@@ -1,0 +1,27 @@
+/* ユーザマスタ */
+create table users (
+      id           varchar(32) not null comment 'ID'
+    , password     text        not null comment 'パスワード'
+    , fname        text        not null comment '苗字'
+    , name         text        not null comment '名前'
+    , fkana        text                 comment '仮名(姓)'
+    , nkana        text                 comment '仮名(名)'
+    , byear        varchar(16)          comment '誕生日(年)'
+    , bmonth       varchar(16)          comment '誕生日(月)'
+    , bday         varchar(16)          comment '誕生日(日)'
+    , zipcode      varchar(32)          comment '郵便番号'
+    , address      text                 comment '住所'
+    , tel1         varchar(32)          comment '電話番号1'
+    , tel2         varchar(32)          comment '電話番号2'
+    , mail1        text                 comment 'メール1'
+    , mail2        text                 comment 'メール2'
+    , token        text        not null comment '新規作成認証用トークン'
+    , status       varchar(1)  not null comment 'ステータス 認証前:0 認証済:1'
+    , delflg       varchar(1)  not null comment '削除フラグ 通常:0 削除:1'
+    , masterflg    varchar(1)  not null comment '権限フラグ 通常:0 管理者:1'
+    , created_user varchar(32) not null comment '作成者'
+    , created_at   timestamp   not null comment '作成日'
+    , updated_user varchar(32) not null comment '更新者'
+    , updated_at   timestamp   not null comment '更新日'
+    , primary key(id)
+) comment 'ユーザマスタ';

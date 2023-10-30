@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+body div:first-child {
+    margin: 0.5em 0 0 0.5em;
+}
+
+form div:nth-child(n+2){
+    margin: 5px 0 0 0;
+}
+
+.err {
+    margin: 0 0 0 8em !important;
+}
