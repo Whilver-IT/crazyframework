@@ -91,7 +91,7 @@ class Installer {
                     $yes_no = "";
                 }
             }
-            $is_make_env = strtolower($yes_no) == "y" ? true : false;
+            $is_make_env = strtolower($yes_no) == "y";
         }
 
         if($is_make_env){

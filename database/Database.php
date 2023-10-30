@@ -23,8 +23,8 @@ class Database {
         ],
         [
             'table' => "zipinfo",
-            'data' => "utf_all",
-            "download" => "https://www.post.japanpost.jp/zipcode/dl/utf/zip/utf_all.zip",
+            'data' => "utf_ken_all",
+            "download" => "https://www.post.japanpost.jp/zipcode/dl/utf/zip/utf_ken_all.zip",
         ],
     ];
 
@@ -325,7 +325,7 @@ class Database {
         switch($table_info['data']){
         case "jigyosyo":
         case "prefectures":
-        case "utf_all":
+        case "utf_ken_all":
             $this->{"insert" . str_replace(["_"], "", ucfirst(strtolower($table_info['data'])))}($filename);
             break;
         default:
@@ -389,9 +389,9 @@ class Database {
             if(!$this->isNullOrEmpty($http_response_header)
             && count($http_response_header)) {
                 $status = explode(' ', $http_response_header[0]);
-                $this->showMsg("zipのダウンロードに失敗しました(url=" . $url . " status_code=" . $status[1] . ")");
+                $this->showMsg("zipのダウンロードに失敗しました(url=" . $table_info['download'] . " status_code=" . $status[1] . ")");
             } else {
-                $this->showMsg("zipのダウンロードに失敗しました(url=" . $url . ")");
+                $this->showMsg("zipのダウンロードに失敗しました(url=" . $table_info['download'] . ")");
             }
         }
 
@@ -575,7 +575,7 @@ SQL;
      * @param string $filename
      * @return void
      */
-    private function insertUtfall(string $filename): void {
+    private function insertUtfkenall(string $filename): void {
         try {
             $this->showMsg("郵便番号マスタ(zipinfo)にデータを挿入します");
             $file = file($filename);

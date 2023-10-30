@@ -21,7 +21,7 @@ OL8用のoracle-database-xe-21cのrpmだけだと、compat-openssl10が必要と
 
 ### 3-1. 必要なパッケージのダウンロードとインストール
 
-```shell-session
+```console
 # mkdir /root/work
 # cd /root/work
 # curl -L -O https://pkgs.dyn.su/el9/base/x86_64/compat-openssl10-1.0.2u-1.el9.x86_64.rpm
@@ -34,7 +34,7 @@ OL8用のoracle-database-xe-21cのrpmだけだと、compat-openssl10が必要と
 
 3-1のインストール中に以下のメッセージが表示される  
 
-```shell-session
+```console
 [INFO] Executing post installation scripts...
 [INFO] Oracle home installed successfully and ready to be configured.
 To configure Oracle Database XE, optionally modify the parameters in '/etc/sysconfig/oracle-xe-21c.conf' and then execute '/etc/init.d/oracle-xe-21c configure' as root.
@@ -43,7 +43,7 @@ To configure Oracle Database XE, optionally modify the parameters in '/etc/sysco
 `/etc/sysconfig/oracle-xe-21c.conf`でパラメータをセットして、rootユーザで`/etc/init.d/oracle-xe-21c configure`を実行しろと言われるので、`/etc/init.d/oracle-xe-21c configure`を実行する  
 但しこのままだと、以下のエラーとなる
 
-```shell-session
+```console
 [WARNING] [INS-08109] 状態'DBCreationOptions'で入力の検証中に予期せぬエラーが発生しました。
    原因: 使用可能な追加情報はありません。
    処置: Oracleサポート・サービスに連絡するか、ソフトウェア・マニュアルを参照してください。
@@ -54,20 +54,20 @@ To configure Oracle Database XE, optionally modify the parameters in '/etc/sysco
 (細かく調べたわけではないですが)CV_ASSUME_DISTIDの環境変数をセットしないといけないようです  
 値は何でもいいみたいです
 
-```shell-session
+```console
 # export CV_ASSUME_DISTID=xxx
 # /etc/init.d/oracle-xe-21c configure
 ```
 
 とするか、
 
-```shell-session
+```console
 # env CV_ASSUME_DISTID=xxx /etc/init.d/oracle-xe-21c configure
 ```
 
 で、パスワードを入れて待つ
 
-```shell-session
+```console
 # env CV_ASSUME_DISTID=xxx /etc/init.d/oracle-xe-21c configure
 Specify a password to be used for database accounts. Oracle recommends that the password entered should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case character and 1 digit [0-9]. Note that the same password will be used for SYS, SYSTEM and PDBADMIN accounts: [パスワード]
 Confirm the password: [パスワード確認]
@@ -119,7 +119,7 @@ Use https://localhost:5500/em to access Oracle Enterprise Manager for Oracle Dat
 
 DBの作成くらいまでは、rootユーザで接続させたいのでrootの.bashrcに以下を設定
 
-```shell-session
+```bash
 export ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE
 export NLS_LANG=JAPANESE_JAPAN.AL32UTF8
 export PATH=$PATH:$ORACLE_HOME/bin #この行は臨機応変に対応してください
@@ -129,7 +129,7 @@ export PATH=$PATH:$ORACLE_HOME/bin #この行は臨機応変に対応してく�
 
 環境変数を反映(sourceコマンドやログイン、ログアウトなどして)後、SYSユーザで接続
 
-```shell-session
+```console
 # source .bashrc
 # sqlplus SYS/{4で設定したパスワード}@//localhost:1521/XE as sysdba
 SQL*Plus: Release 21.0.0.0.0 - Production on 火 10月 17 23:00:36 2023
@@ -159,7 +159,7 @@ XEではXEPDB1というデフォルトのプラガブル・データベースが
 
 SYSでXEにログインして接続とPDBの状態を確認する
 
-```shell-session
+```console
 # sqlplus SYS/{パスワード}@//localhost:1521/XE as sysdba
 SQL> show con_name;
 
@@ -176,7 +176,7 @@ SQL> show pdbs;
 
 #### 6-2-2. 元となるPDB$SEEDとデフォルトのPDBであるXEPDB1のファイル位置を確認
 
-```shell-session
+```console
 SQL> alter session set container=PDB$SEED;
 
 セッションが変更されました。
@@ -211,7 +211,7 @@ PDB$SEEDは/opt/oracle/oradata/XE/pdbseedディレクトリ、XEPDB1は/opt/orac
 
 #### 6-3-1. /opt/oracle/oradata/XE配下のディレクトリを確認
 
-```shell-session
+```console
 # ls -l /opt/oracle/oradata/XE
 合計 2715408
 drwxr-x---. 2 oracle oinstall        104 10月 17 22:35 XEPDB1
@@ -230,7 +230,7 @@ drwxr-x---. 2 oracle oinstall        111 10月 17 22:25 pdbseed
 
 #### 6-3-2. /opt/oracle/oradataにディレクトリを作成
 
-```shell-session
+```console
 # mkdir /opt/oracle/oradata/XE/CRAZYPDB
 # chown oracle:oinstall /opt/oracle/oradata/XE/CRAZYPDB
 # chmod 750 /opt/oracle/oradata/XE/CRAZYPDB
@@ -256,7 +256,7 @@ drwxr-x---. 2 oracle oinstall        111 10月 17 22:25 pdbseed
 SQL*PlusでSYSでログインして、CRAZYPDBというプラガブル・データベースを作成  
 ADMIN USERはCRAZYPDBADMとする
 
-```shell-session
+```console
 # sqlplus SYS/{パスワード}@//localhost:1521/XE as sysdba
 SQL> CREATE PLUGGABLE DATABASE CRAZYPDB ADMIN USER CRAZYPDBADM IDENTIFIED BY {パスワード} FILE_NAME_CONVERT = ('/opt/oracle/oradata/XE/pdbseed', '/opt/oracle/oradata/XE/CRAZYPDB');
 
@@ -265,7 +265,7 @@ SQL> CREATE PLUGGABLE DATABASE CRAZYPDB ADMIN USER CRAZYPDBADM IDENTIFIED BY {�
 
 作成直後の状態はMOUNTEDなので、openして、stateを保存する
 
-```shell-session
+```console
 SQL> show pdbs;
 
     CON_ID CON_NAME			              OPEN MODE  RESTRICTED
@@ -293,7 +293,7 @@ SQL> alter pluggable database crazypdb save state;
 
 一旦ログアウトして、作成したプラガブル・データベースへADMIN USERでログインする
 
-```shell-session
+```console
 SQL> exit
 Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
 Version 21.3.0.0.0との接続が切断されました。
@@ -313,7 +313,7 @@ Version 21.3.0.0.0
 
 接続できることを確認しexitして、作成したCRAZYPDBのファイルを確認してみる
 
-```shell-session
+```console
 SQL> exit
 Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
 Version 21.3.0.0.0との接続が切断されました。
@@ -331,7 +331,7 @@ Version 21.3.0.0.0との接続が切断されました。
 
 デフォルトのXEPDB1のTABLESPACEの場所を確認
 
-```shell-session
+```console
 # sqlplus SYS/{パスワード}@//localhost:1521/XEPDB1 as sysdba
 SQL> select file_name, tablespace_name from dba_data_files;
 
@@ -370,7 +370,7 @@ PDBのファイルと同じ場所に作られてるようなので、これと�
 
 SYSユーザでAS sysdbaで対象のプラガブル・データベースに接続して実行
 
-```shell-session
+```console
 # sqlplus SYS/{パスワード}@//localhost:1521/CRAZYPDB as sysdba
 SQL> CREATE TABLESPACE tablespace_crazy DATAFILE '/opt/oracle/oradata/XE/CRAZYPDB/tablespace_crazy.dbf' SIZE 100M AUTOEXTEND ON MAXSIZE UNLIMITED;
 
@@ -389,7 +389,7 @@ ADMIN USERとは別にテーブル作成、データ作成の可能なユーザ�
 
 Oracleはユーザ作成後、デフォルトでは180日のパスワード有効期限なので、セキュリティ的にはよろしくないが無期限にしたい場合は、ALTER PROFILEで無期限にセットする
 
-```shell-session
+```console
 # sqlplus SYS/{パスワード}@//localhost:1521/CRAZYPDB as sysdba
 SQL> ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
 
@@ -416,7 +416,7 @@ SQL> GRANT DBA TO {ユーザ};
 
 6-4-3で作成したユーザで作成したプラガブル・データベースにアクセスして、テーブルの作成、データの作成等を行う
 
-```shell-session
+```console
 # sqlplus {ユーザ}/{パスワード}@//localhost:1521/CRAZYPDB
 SQL> CREATE TABLE TEST (id VARCHAR2(16) NOT NULL PRIMARY KEY, name VARCHAR2(2048));
 

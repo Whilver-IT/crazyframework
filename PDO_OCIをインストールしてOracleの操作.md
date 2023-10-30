@@ -16,7 +16,7 @@ RHEL9系を最小構成でインストール
 
 PDO_OCIを入れるマシンは、Oracle XE 21cを入れたマシンとは別マシンであることは既出であるが、Oracle XE 21cを入れたマシンと同じバージョンのOracle Instant Clientとsqlplusをインストールする
 
-```shell
+```console
 # dnf install https://yum.oracle.com/repo/OracleLinux/OL8/oracle/instantclient21/x86_64/getPackage/oracle-instantclient-basic-21.3.0.0.0-1.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL8/oracle/instantclient21/x86_64/getPackage/oracle-instantclient-sqlplus-21.3.0.0.0-1.x86_64.rpm
 ```
 
@@ -24,13 +24,13 @@ PDO_OCIを入れるマシンは、Oracle XE 21cを入れたマシンとは別マ
 
 ### 4-1. Remiリポジトリの追加
 
-```shell
+```console
 # dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
 ### 4-2. PHPの必要なパッケージをインストール
 
-```shell
+```console
 # dnf install php82-php-common php82-php php82-php-mbstring php82-php-pdo php82-php-oci8 php82-php-xml php82-php-zip
 ```
 
@@ -40,7 +40,7 @@ PDO_OCIを入れるマシンは、Oracle XE 21cを入れたマシンとは別マ
 
 rootユーザで一旦行う
 
-```shell
+```console
 # export LD_LIBRARY_PATH=/usr/lib/oracle/21/client64/lib
 # export NLS_LANG=Japanese_JAPAN.AL32UTF8
 # sqlplus {ユーザ}/{パスワード}@//{ホスト名}/{DB名}
@@ -48,13 +48,13 @@ rootユーザで一旦行う
 
 tnsnames.oraの場合
 
-```shell
+```console
 # sqlplus {ユーザ}/{パスワード}@//{TNS接続名}
 ```
 
 上記以外の場合
 
-```shell
+```console
 # sqlplus {ユーザ}/{パスワード}@//{ホスト名}/{DB名}
 ```
 

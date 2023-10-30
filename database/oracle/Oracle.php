@@ -19,7 +19,6 @@ class Oracle extends Database implements DatabaseInterface {
             $dsn .= $this->db_param['dbname'];
         }
         $dsn .= ";charset=AL32UTF8";
-	$dsn = "oci:dbname=foo;charset=AL32UTF8";
         return $dsn;
     }
 

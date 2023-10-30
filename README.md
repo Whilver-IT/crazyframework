@@ -37,7 +37,7 @@
 
 ### 3-2. Laravelっぽいフレームワークを作成  
 
-* <a href="https://readouble.com/laravel/10.x/ja/structure.html" target="_blank">ディレクトリ構造</a>はLaravel準拠とする
+* [ディレクトリ構造](https://readouble.com/laravel/10.x/ja/structure.html)はLaravel準拠(厳密には違うけど)
 * bladeやキャッシュの仕組みは無視
 * routes/web.phpにルーティング
 * ルーティングでapp/Http/Controllers配下のControllerを呼び出し
@@ -74,5 +74,5 @@
 * まずはルーティングとview(に相当するもの)から作成するのがよいかと(アクセスしてまずは見えるものがないとイメージを掴みづらい印象)
 * 色んなフレームワークからイイとこ取りというか、あの仕組みはあのフレームワーク~~からパクって~~を参考にすればいいかなとかフレキシブルにできるというか
 * 今回はPHPでLaravelっぽいものを作成してみたが、別の言語でも似たようなフレームワークが作れるかなとかそういった知識は活かせるかも
-* 余力があれば<a href="https://nrslib.com/clean-architecture" target="_blank">クリーンアーキテクチャ</a>とかでやるとよさそう
+* 余力があれば[クリーンアーキテクチャ](https://nrslib.com/clean-architecture)とかでやるとよさそう
 * 色んなフレームワークが今後もどんどん出てくるんじゃなかろうかとは思うので、案件に見合ったものを選択すればいいのかなと(自分はどちらかというと選定側になることはほとんどないのですけど)

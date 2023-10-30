@@ -4,8 +4,8 @@
 
 ## 1. はじめに
 
-<section><p><a href="https://learn.microsoft.com/ja-jp/sql/linux/sql-server-linux-setup?view=sql-server-ver16" target="_blank">SQL Server on Linux のインストール ガイド</a></p></section>  
-<a href="https://learn.microsoft.com/ja-jp/sql/linux/quickstart-install-connect-red-hat?view=sql-server-ver16&tabs=rhel8">クイック スタート:Red Hat に SQL Server をインストールし、データベースを作成する</a>  
+[SQL Server on Linux のインストール ガイド](https://learn.microsoft.com/ja-jp/sql/linux/sql-server-linux-setup?view=sql-server-ver16)  
+[クイック スタート:Red Hat に SQL Server をインストールし、データベースを作成する](https://learn.microsoft.com/ja-jp/sql/linux/quickstart-install-connect-red-hat?view=sql-server-ver16&tabs=rhel8)
 
 上記を参考にRHEL9系にMSSQLをインストールする
 
@@ -23,7 +23,7 @@
 
 以下のコマンドを実行すればOK.
 
-```shell-session
+```console
 # dnf install compat-openssl11 https://packages.microsoft.com/rhel/8/mssql-server-2022/Packages/m/mssql-server-16.0.4085.2-1.x86_64.rpm https://packages.microsoft.com/rhel/8/prod/Packages/m/mssql-tools18-18.2.1.1-1.x86_64.rpm https://packages.microsoft.com/rhel/8/prod/Packages/m/msodbcsql18-18.3.2.1-1.x86_64.rpm
 
 The license terms for this product can be downloaded from
@@ -52,7 +52,7 @@ YES
 
 以下のコマンドを実行
 
-```shell-session
+```console
 # /opt/mssql/bin/mssql-conf setup
 
 SQL Server のエディションを選択します:
@@ -109,7 +109,7 @@ SQL Server を構成しています...
 
 ## 5. 接続確認
 
-```shell-session
+```console
 # /opt/mssql-tools18/bin/sqlcmd -No -S localhost sa
 Password: {セットアップ時に設定したパスワード}
 1>
@@ -123,13 +123,13 @@ Password: {セットアップ時に設定したパスワード}
 
 Remiリポジトリ等で入れたPHPであれば、php-sqlsrvパッケージを入れればよい  
 ここでは、  
-<a href="https://learn.microsoft.com/ja-jp/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver16" target="_blank">Microsoft SQL Server 用 Drivers for PHP をダウンロードする</a>  
+[Microsoft SQL Server 用 Drivers for PHP をダウンロードする](https://learn.microsoft.com/ja-jp/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver16)  
 をもとにして、インストールする  
 
-<a href="https://github.com/Microsoft/msphpsql/releases/v5.11.0" target="_blank">5.11.0 for PHP Driver for SQL Server</a>  
+[5.11.0 for PHP Driver for SQL Server](https://github.com/Microsoft/msphpsql/releases/v5.11.0)  
 によると、peclコマンドで入れるようなので、  
 
-```shell-session
+```console
 # dnf install php-pear
 # pecl install sqlsrv-5.11.0
 # pecl install pdo_sqlsrv-5.11.0
@@ -139,21 +139,21 @@ Remiリポジトリ等で入れたPHPであれば、php-sqlsrvパッケージを
 PHPはphpパッケージとphp-develが必要なので、インスコしてからコマンドを実行したが、sql.hのヘッダファイルが無いとのこと  
 unixODBC-develパッケージが必要だが、Miracle Linux 9には入っておらず…  
 よって、  
-<a href="https://pkgs.org" target="_blank">pkgs.org</a>  
+[pkgs.org](https://pkgs.org)  
 でunixODBC-develを検索して、CentOS Stream 9用のパッケージをインストール  
-<a href="https://centos.pkgs.org/9-stream/centos-crb-x86_64/unixODBC-devel-2.3.9-4.el9.x86_64.rpm.html" target="_blank">https://centos.pkgs.org/9-stream/centos-crb-x86_64/unixODBC-devel-2.3.9-4.el9.x86_64.rpm.html</a>  
+[https://centos.pkgs.org/9-stream/centos-crb-x86_64/unixODBC-devel-2.3.9-4.el9.x86_64.rpm.html](https://centos.pkgs.org/9-stream/centos-crb-x86_64/unixODBC-devel-2.3.9-4.el9.x86_64.rpm.html)  
 (上記リンク先にはcaptchaがかかっていたので、具体的なパッケージのURLは出さないでおきます)
 
 これで、
 
-```shell-session
+```console
 # pecl install sqlsrv-5.11.0
 # pecl install pdo_sqlsrv-5.11.0
 ```
 
 どちらもOK.だったので、`/etc/php.d/20-sqlsrv.ini`、`/etc/php.d/30-pdo_sqlsrv.ini`を追加
 
-```shell-session
+```console
 # vi /etc/php.d/20-sqlsrv.ini
 extension=sqlsrv
 # vi /etc/php.d/30-pdo_sqlsrv.ini
@@ -162,7 +162,7 @@ extension=pdo_sqlsrv
 
 として、
 
-```shell-session
+```console
 # php -i | grep -i pdo
 /etc/php.d/20-pdo.ini,
 /etc/php.d/30-pdo_sqlite.ini,
@@ -189,7 +189,7 @@ TLS接続してないので、DSNのTrustServerCertificate=1を付けないと�
 何かデータベースに接続する場合は、  
 Database={データベース名}  
 をDSNに付与すればよい  
-<a href="https://www.php.net/manual/ja/ref.pdo-sqlsrv.connection.php" target="_blank">PDO_SQLSRV DSN</a>  
+[PDO_SQLSRV DSN](https://www.php.net/manual/ja/ref.pdo-sqlsrv.connection.php)
 
 ```php
 <?php
@@ -212,7 +212,7 @@ print_r($data);
 
 実行結果
 
-```shell-session
+```console
 Array
 (
     [0] => Array
