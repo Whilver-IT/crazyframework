@@ -14,7 +14,8 @@ RHEL9系を最小構成でインストール
 
 ## 3. Oracle Instant Client 21のインストール
 
-PDO_OCIを入れるマシンは、Oracle XE 21cを入れたマシンとは別マシンであることは既出であるが、Oracle XE 21cを入れたマシンと同じバージョンのOracle Instant Clientとsqlplusをインストールする
+PDO_OCIを入れるマシンは、Oracle XE 21cを入れたマシンとは別マシンであることは既出であるが、Oracle XE 21cを入れたマシンと同じバージョンのOracle Instant Clientとsqlplusをインストールする  
+今回は21.3.0.0.0
 
 ```console
 # dnf install https://yum.oracle.com/repo/OracleLinux/OL8/oracle/instantclient21/x86_64/getPackage/oracle-instantclient-basic-21.3.0.0.0-1.x86_64.rpm https://yum.oracle.com/repo/OracleLinux/OL8/oracle/instantclient21/x86_64/getPackage/oracle-instantclient-sqlplus-21.3.0.0.0-1.x86_64.rpm
