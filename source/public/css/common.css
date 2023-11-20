@@ -5,82 +5,82 @@
  */
 
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 } 
 
 body {
-	background-color: #f4f5f7;
-	margin: 0 !important;
+    background-color: #f4f5f7;
+    margin: 0 !important;
 }
 
 .flex-container {
-	display: flex;
-	flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .banner {
-	width: 100%;
+    width: 100%;
 }
 
 .flex-menu {
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .navmenu {
-	display: flex;
-	border-right: 1px solid #f4f5f7;
-	border-bottom: none;
-	background-color: #023e98;
-	height: 35px;
-	color: #f4f5f7;
-	font-weight: 550;
-	align-items: center;
-	justify-content: center;
-	width: 24.9%;
+    display: flex;
+    border-right: 1px solid #f4f5f7;
+    border-bottom: none;
+    background-color: #023e98;
+    height: 35px;
+    color: #f4f5f7;
+    font-weight: 550;
+    align-items: center;
+    justify-content: center;
+    width: 24.9%;
 }
 
 @media screen and (max-width: 576px) {
-	.flex-menu > div {
-		width: 100%;
-	}
-	.navmenu {
-		border-right: none;
-		border-bottom: 1px solid #f4f5f7;
-	}
+    .flex-menu > div {
+        width: 100%;
+    }
+    .navmenu {
+        border-right: none;
+        border-bottom: 1px solid #f4f5f7;
+    }
 }
 
 .navmenu.selected,.navmenu:hover {
-	border-top: 1px solid #023e98;
-	background-color: #f4f5f7;
-	color: #023e98;
+    border-top: 1px solid #023e98;
+    background-color: #f4f5f7;
+    color: #023e98;
 }
 
 .navmenu:hover a {
-	color: #023e98 !important;
-	text-decoration: none !important;
+    color: #023e98 !important;
+    text-decoration: none !important;
 }
 
 .link-none {
-	color: #f4f5f7;
-	text-decoration: none;
+    color: #f4f5f7;
+    text-decoration: none;
 }
 
 .list-style-none {
-	list-style: none;
+    list-style: none;
 }
 
 .title {
-	margin: 1rem 0 1rem 0;
-	padding: 0 0 0 0.5rem;
-	border-radius: 5px;
-	background: #3cf;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #33ccff, #0082c8, #0082c8, #33ccff);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #33ccff, #1c92d2, #1c92d2, #33ccff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	font-size: 18pt;
-	font-weight: bold;
-	width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding: 0 0 0 0.5rem;
+    border-radius: 5px;
+    background: #3cf;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #33ccff, #0082c8, #0082c8, #33ccff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #33ccff, #1c92d2, #1c92d2, #33ccff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size: 18pt;
+    font-weight: bold;
+    width: 100%;
 }
 
 .err {

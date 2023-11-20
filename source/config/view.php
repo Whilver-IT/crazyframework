@@ -5,5 +5,5 @@
  * resourcesからのパスを指定
  */
 return [
-	"views",
+    "views",
 ];

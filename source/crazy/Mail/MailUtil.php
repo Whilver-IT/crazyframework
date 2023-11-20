@@ -9,21 +9,21 @@ use \Crazy\Validator\Validator;
  */
 class MailUtil {
 
-	/**
-	 * コンストラクタ
-	 */
-	private function __construct(){}
+    /**
+     * コンストラクタ
+     */
+    private function __construct(){}
 
-	/**
-	 * メールアドレスチェック
-	 * TODO まだ
-	 *
-	 * @param string $mailAddress
-	 * @param boolean $isCheckMX
-	 * @return boolean
-	 */
-	public static function isCorrectMailAddress(string $mailAddress, bool $isCheckMX = false): bool {
+    /**
+     * メールアドレスチェック
+     * TODO まだ
+     *
+     * @param string $mailAddress
+     * @param boolean $isCheckMX
+     * @return boolean
+     */
+    public static function isCorrectMailAddress(string $mailAddress, bool $isCheckMX = false): bool {
 
-		return true;
-	}
+        return true;
+    }
 }

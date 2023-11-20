@@ -12,11 +12,11 @@ use \App\Services\AddressService;
  */
 class SearchZipController extends ControllerBase {
 
-	public function index() {
-		$zip_info = [];
-		if(!is_nullorempty($_GET['zip'] ?? null)){
-			$zip_info = (new AddressService)->getZipInfoAll($_GET['zip']);
-		}
-		return json_encode($zip_info);
-	}
+    public function index() {
+        $zip_info = [];
+        if(!is_nullorempty($_GET['zip'] ?? null)){
+            $zip_info = (new AddressService)->getZipInfoAll($_GET['zip']);
+        }
+        return json_encode($zip_info);
+    }
 }

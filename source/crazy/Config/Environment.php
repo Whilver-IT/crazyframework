@@ -2,7 +2,7 @@
 
 namespace Crazy\Config;
 
-use Bootstrap\App;
+use \Bootstrap\App;
 
 /**
  * 環境変数クラス
