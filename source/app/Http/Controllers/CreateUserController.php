@@ -163,7 +163,6 @@ class CreateUserController extends ControllerBase {
             if(is_nullorempty($result['err_msg'])){
                 $_SESSION['create_user'] = true;
             }
-            $result['session'] = $_SESSION;
         } else {
             $result['err_msg'] = $err_msg;
         }
